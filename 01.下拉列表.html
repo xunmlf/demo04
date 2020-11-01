@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/清除浏览器样式.css">
+    <style>
+        .box1 {
+            width: 100px;
+            height: 50px;
+            margin: 0 auto;
+        }
+
+        .box1 a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .box2 {
+            border: 1px solid gainsboro;
+            background-color: gray;
+            color: #fff;
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+        }
+        .box1:hover  .box3{
+            display: block;
+        }
+
+        .box3{
+            border: 1px solid gainsboro;
+            background-color: gray;
+            color: #fff;
+            width: 100px;
+            height: 150px;
+            line-height: 50px;
+            text-align: center;
+            display: none;
+        }
+        .box4{
+            border: 1px solid white;
+            background-color: gray;
+            color: #fff;
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <a href=""><div class="box2">下拉菜单</div></a>
+        <div class="box3">
+           <a href="#"><div class="box4">1</div></a>
+           <a href="#"><div class="box4">2</div></a>
+           <a href="#"><div class="box4">3</div></a>
+        </div>
+    </div>
+</body>
+
+</html>
