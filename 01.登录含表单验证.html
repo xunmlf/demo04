@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: url(./498e2w.png);
+            background-repeat: no-repeat;
+        }
+
+        #login-box {
+            width: 30%;
+            height: auto;
+            margin: 0 auto;
+            border-radius: 50px;
+            margin-top: 15%;
+            text-align: center;
+            background: #00000050;
+            padding: 20px 50px;
+        }
+
+        #login-box .form .item {
+            margin-top: 15px;
+        }
+
+        #login-box .form .item img {
+
+            width: 30px;
+            height: 30px;
+        }
+
+        #login-box h1 {
+            color: #ffffff;
+        }
+
+        #login-box .form .item input {
+            display: inline;
+            border: 0;
+            border-bottom: 2px solid #ffffff;
+            font-size: 18px;
+            padding: 5px 10px;
+            background: #ffffff00;
+            color: #ffffff;
+        }
+
+        #login-box .form .item input:focus {
+            outline: none;
+        }
+
+        #btn {
+            margin-top: 15px;
+            width: 180px;
+            height: 30px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+            background-image: linear-gradient(to right, #db3125 0%, #578bc3 100%);
+            border: 0;
+            border-radius: 15px;
+        }
+
+        #btn:focus {
+            outline: none;
+        }
+
+        span {
+            display: block;
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        window.onload = function () {
+            var usernameElt = document.getElementById("username");
+            var usernameerrorElt = document.getElementById("usernameError");
+            usernameElt.onblur = function () {
+                //获取用户名
+                var name = usernameElt.value;
+                //去除空格
+                name = name.trim();
+                //判单用户名是否为空
+                if (name == "") {
+                    usernameerrorElt.innerText = "用户名不能为空";
+                } else {
+                    //判断长度
+                    if (name.length < 6 || name.length > 16) {
+                        usernameerrorElt.innerText = "用户名长度在[6,16]之间";
+                    } else {
+                        //判断是否有特殊符号
+                        //正则表达式
+                        var regExp = /^[A-Za-z0-9]+$/;
+                        var ok = regExp.test(name);
+                        if (!ok) {
+                            usernameerrorElt.innerText = "用户名只能由数字、字母、下划线组成";
+                        }
+                    }
+                }
+            }
+
+            usernameElt.onfocus = function () {
+
+                if (usernameerrorElt.innerText != "") {
+                    usernameElt.value = "";
+                }
+                usernameerrorElt.innerText = "";
+            }
+
+
+            var pwdELt = document.getElementById("pwd");
+            var pwdErrorelt = document.getElementById("pwdError");
+            pwdELt.onblur = function () {
+                var pwd = pwdELt.value;
+                if (pwd != 123456) {
+                    pwdErrorelt.innerText = "密码错误";
+                }
+            }
+
+            pwdELt.onfocus = function () {
+                if (pwdErrorelt.innerText != "") {
+                    pwdELt.value = "";
+                }
+                pwdErrorelt.innerText = "";
+            }
+
+
+
+            //提交事件
+            var btnElt = document.getElementById("btn");
+            btnElt.onclick = function () {
+                //触发user ,pwd2 ,email的blur事件
+                usernameElt.focus();
+                usernameElt.blur();
+
+                pwdELt.focus();
+                pwdELt.blur();
+                //当表单所有事件合法时，提交表单
+                if (usernameerrorElt.innerText == "" && pwdErrorelt.innerText == "") {
+                    //获取表单对象
+                    var userformElt = document.getElementById("userfrom");
+
+                    //提交表单
+                    userformElt.submit();
+                }
+            }
+
+
+        }
+    </script>
+    <form id="userfrom" action="../作业/07.先锋.html" >
+        <div id="login-box">
+            <h1>Login</h1>
+            <div class="form">
+                <div class="item">
+                    <i></i>
+                    <img src="./登录-用户.png" alt="">
+                    <input type="text" placeholder="Username" id="username"><span id="usernameError"></span>
+                </div>
+                <i></i>
+                <div class="item">
+                    <i></i>
+                    <img src="./登录-密码.png" alt="">
+                    <input type="text" placeholder="Password" id="pwd"><span id="pwdError"></span>
+                </div>
+            </div>
+           <input type="button" id="btn" value="login">
+
+        </div>
+    </form>
+</body>
+
+</html>
