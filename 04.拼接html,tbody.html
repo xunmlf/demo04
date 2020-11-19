@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        //从Java过来一个json格式的字符串
+        var fromJava = "{\"count\" : \"3\",  \"students\" : [ {\"sno\": \"110\", \"sname\": \"张三\", \"sex\": \"男\" },{ \"sno\": \"120\", \"sname\": \"李四\", \"sex\": \"男\" }, { \"sno\": \"130\", \"sname\": \"王五\", \"sex\": \"男\" } ]}";
+        window.onload = function () {
+            document.getElementById("btn").onclick = function () {
+
+                //解析json格式字符串
+                window.eval("var json= " + fromJava);
+
+                //记录总条数
+                document.getElementById("totalspan").innerHTML = json.count;
+
+
+                //拼接
+                var stuArray = json.students;
+
+                var html = "";
+                for (var i = 0; i < stuArray.length; i++) {
+                    var s = stuArray[i];
+                    html += "<tr>";
+                    html += "<td>"+s.sno+"</td>";
+                    html += " <td>"+s.sname+"</td>";
+                    html += "<td>"+s.sex+"</td>";
+                    html += "</tr>";
+                }
+
+                //将以上内容拼接
+                document.getElementById("stuTbody").innerHTML=html;
+
+            }
+        }
+    </script>
+    <input type="button" value="查看学生信息列表" id="btn">
+    <hr>
+    <table border="1px" width="40%">
+        <tr>
+            <th>序号</th>
+            <th>学生姓名</th>
+            <th>学生性别</th>
+        </tr>
+        <tbody id="stuTbody">
+            <!--<tr>
+                <td>1</td>
+                <td>张三</td>
+                <td>20</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>李四</td>
+                <td>18</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>王五</td>
+                <td>21</td>
+            </tr>-->
+        </tbody>
+    </table>
+    总记录条数:<span id="totalspan">0</span>条
+</body>
+
+</html>
